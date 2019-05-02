@@ -20,4 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('time', 'TimeController');
 Route::resource('jogo', 'JogoController');
+Route::resource('sistema', 'SistemaController');
+Route::resource('relationship', 'RelationshipController');
 Route::get('/partida/{casa_id}','JogoController@ConsultaAjax')->name('partida');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/getRequest', function (){
+    if (Request::ajax()){
+        return 'testeeeeee';
+    }
+});

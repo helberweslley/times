@@ -7,12 +7,13 @@ use App\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class JogoController extends Controller
 {
 
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -22,7 +23,9 @@ class JogoController extends Controller
      */
     public function index()
     {
-        return view('jogo',['jogos' => Jogo::paginate(15)]);
+
+
+        return view('jogo.index',['jogos' => Jogo::paginate(15)], $array);
     }
 
     /**
@@ -55,7 +58,7 @@ class JogoController extends Controller
 
         $jogo ->save();
 
-        return redirect('/jogo')->with('success', 'adicionado com sucesso');
+        return redirect('/sistema')->with('success', 'adicionado com sucesso');
     }
 
     /**
@@ -110,7 +113,6 @@ class JogoController extends Controller
         $id = $request->get('id');
 
         $results = DB::select('SELECT t.id, t.name FROM times t WHERE  t.id not in (select j.visitante_id from jogos j where j.casa_id = ? UNION all select g.casa_id from jogos g where g.visitante_id = ?) and t.id <> ?', [3,3,3]);
-
 
         return response()->json(['response' => 'success', 'comments' => $results]);
     }
