@@ -21,7 +21,7 @@ class RelationshipController extends Controller
      */
     public function index()
     {
-        return view('relationship.index',['relationships' => Relationship::paginate(15)]);
+        return view('relationship.index',['relationships' => Relationship::paginate(10)]);
     }
 
     /**
@@ -55,27 +55,6 @@ class RelationshipController extends Controller
         $relationship ->save();
 
         return redirect('/relationship')->with('success', 'Adicionado com sucesso');
-    }
-
-    public function retornoAjax(Request $request)
-    {
-
-        $results = DB::select('select (select s.name from sistemas s where s.id = r.source_id), (select s.name from sistemas s where s.id = r.target_id) from relationships r');
-
-        dump($results);
-        return response()->json(['response' => 'success', 'comments' => $results]);
-
-   /*     $data2 = [];
-        $relationship = Relationship::all();
-        foreach ($relationship as $relationship)
-        {
-            $data2[] = [
-                'source' => $relationship->source->name,
-                'target' => $relationship->target->name,
-                'type' => "licensing"
-            ];
-        }
-        return $data2;*/
     }
 
     /**
@@ -126,12 +105,30 @@ class RelationshipController extends Controller
 
     public function ConsultaAjax(Request $request)
     {
-
+        $data2 = [];
+        $relationship = Relationship::all();
+        foreach ($relationship as $relationship)
+        {
+            $data2[] = [
+                'source' => $relationship->source->name,
+                'target' => $relationship->target->name,
+                'type' => "licensing",
+                'description_s' => $relationship->source->description,
+                'app_ip_s' => $relationship->source->app_ip,
+                'app_user_s' => $relationship->source->app_user,
+                'app_pass_s' =>$relationship->source->app_pass,
+                'description_t' => $relationship->target->description,
+                'app_ip_t' => $relationship->target->app_ip,
+                'app_user_t' => $relationship->target->app_user,
+                'app_pass_t' =>$relationship->target->app_pass
+            ];
+        }
+/*
         $id = $request->get('id');
 
-        $results = DB::select('SELECT t.id, t.name FROM times t WHERE  t.id not in (select j.visitante_id from jogos j where j.casa_id = ? UNION all select g.casa_id from jogos g where g.visitante_id = ?) and t.id <> ?', [3,3,3]);
+        $results = DB::select('select (select s.name from sistemas s where s.id = r.source_id), (select s.name from sistemas s where s.id = r.target_id) from relationships r');
 
-
-        return response()->json(['response' => 'success', 'comments' => $results]);
+        //return response()->json(['response' => 'success', 'comments' => $results]);*/
+        return $data2;
     }
 }

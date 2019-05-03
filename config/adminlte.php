@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Sistemas</b>',
 
-    'logo_mini' => '<b>A</b>LT',
+    'logo_mini' => '<b>Sis</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,67 +108,38 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'Administração',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
+            'text' => 'Sistemas',
+            'icon' => 'save',
             'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
+                    'text' => 'Listar',
+                    'url'  => '/sistema',
+                    'icon' => 'list-ol'],
                 [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
+                    'text' => 'Cadastrar',
+                    'url'  => '/sistema/create',
+                    'icon' => 'plus'],
+            ]
+        ],
+        [
+            'text' => 'Relacionamentos',
+            'icon' => 'link',
+            'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
+                    'text' => 'Listar',
+                    'url'  => '/relationship',
+                    'icon' => 'list-ol'],
+                [
+                    'text' => 'Cadastrar',
+                    'url'  => '/relationship/create',
+                    'icon' => 'plus'],
+                [
+                    'text' => 'Visualizar',
+                    'url'  => '/visualizar',
+                    'icon' => 'eye'],
+            ]
         ],
         'LABELS',
         [
