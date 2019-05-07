@@ -30,6 +30,9 @@
                                         <option value={{$sistema->id}}>{{$sistema->name}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+
                                 <select name="target_id" id="target_id" class="form-control">
                                     <option value="" selected>Selecione o sistema alvo</option>
                                     @foreach ($sistemas->all() as $sistema)

@@ -18,7 +18,7 @@
         }
 
         .link.resolved {
-            stroke-dasharray: 0,2 1;
+            stroke-dasharray: 0,2,1;
         }
 
         circle {

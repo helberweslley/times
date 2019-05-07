@@ -19,7 +19,7 @@ class SistemaController extends Controller
      */
     public function index()
     {
-        return view('sistemas.index',['sistemas' => Sistema::paginate(15)]);
+        return view('sistemas.index',['sistemas' => Sistema::paginate(5)]);
     }
 
     /**
